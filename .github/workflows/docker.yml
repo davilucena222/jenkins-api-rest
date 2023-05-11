@@ -33,6 +33,7 @@ jobs:
           echo "IMAGE_ID=$(docker images -q davilucena/volume-image-id:latest)" >> $GITHUB_ENV
 
   publish:
+    needs: build
     build-container:
       name: Build docker container image
       runs-on: ubuntu-latest
