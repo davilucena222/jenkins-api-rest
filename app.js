@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 app.get('/id', (req, res) => {
   const { id } = req.query;
   fs.writeFileSync('id.json', JSON.stringify({ id }));
-  res.send(`Id ${id} salvo com sucesso!`);
+  res.send(`Id ${id} salvo com sucesso`);
 });
 
 module.exports = app;
