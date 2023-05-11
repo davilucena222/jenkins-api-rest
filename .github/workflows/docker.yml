@@ -25,4 +25,4 @@ jobs:
         with:
           context: DockerFileFolder/
           push: true
-          tags: davilucena222/testrepo:latest
+          tags: davilucena/volume-image-id:latest
