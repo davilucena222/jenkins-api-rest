@@ -19,15 +19,9 @@ pipeline {
         }
         stage('Publicar a imagem no Dockerhub') {
             steps {
-                environment {
-                    DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-                }
-
-                steps {
-                  withDockerRegistry([credentialsId: "${DOCKERHUB_CREDENTIALS}", url: '']) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push nome-do-repositorio:tag'
-                  }
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD' 
+                    sh 'docker push volume-jenkins:latest' 
                 }
             }
         }
